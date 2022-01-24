@@ -65,9 +65,6 @@ def calcularFlujo():
     variables.tiempoTranscurrido = ticks_diff(ticks_ms(), variables.inicioTemporizador)
     if variables.tiempoTranscurrido >= 1000:
         estado = disable_irq()
-#         if caudalimetro.numPulsos > 400:
-#             caudalimetro.numPulsos -= caudalimetro.numPulsos
-#             caudalimetro.pulsosAcum -= caudalimetro.numPulsos
         print("Pulsos:",caudalimetro.numPulsos, "Pulsos Acumulados:", caudalimetro.pulsosAcum)
         caudalimetro.caudalmLxS = ((1000.0 /variables.tiempoTranscurrido) * caudalimetro.numPulsos) / caudalimetro.factorCalibracion
         mlFlujo = (caudalimetro.caudalmLxS / 120) * 1000
@@ -76,9 +73,10 @@ def calcularFlujo():
         caudalimetro.numPulsos = 0
         enable_irq(estado)
         variables.inicioTemporizador = ticks_ms()
-        pantalla.mostrarEnPantalla(caudalimetro.caudalmLxS,caudalimetro.volumenTotal)
+        pantalla.mostrarEnPantalla(caudalimetro.caudalmLxS,caudalimetro.volumenTotal,bombaAgua.velocidadActual)
 #Inicia código principal
 def do_main():
+    pantalla.mostrarLogoInicial()
     #Se inicia un hilo independiente para actualización de servicio IOT en Thinger.io
     start_new_thread(actualizaServIOT, ())
     while True:
