@@ -4,7 +4,13 @@ import ujson
 #Envía mensajes a Telegram a través de IFTTT
 def enviaMensajeTelegram(nombreEvento, consumoActual, consumoLimite, velocidadMotor):
     url = "https://maker.ifttt.com/trigger/" + nombreEvento + "/with/key/*KEY_HERE*"
-    respuesta = urequests.get(url+"?value1="+str(consumoActual / 1000)+"&value2="+str(consumoLimite / 1000)+"&value3="+str(velocidadMotor))
+    valConsActual = "0.0"
+    valConsLimite = "0.0"
+    if consumoActual > 0:
+        valConsActual = str(consumoActual / 1000)
+    if consumoLimite > 0:
+        valConsLimite = str(consumoLimite / 1000)
+    respuesta = urequests.get(url+"?value1="+valConsActual+"&value2="+valConsLimite+"&value3="+str(velocidadMotor))
     print(respuesta.status_code, respuesta.text)
     respuesta.close()
  #Actualiza el consumo en Thinger.io y devuelve la velocidad del motor
