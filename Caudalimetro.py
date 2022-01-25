@@ -6,7 +6,7 @@ class Caudalimetro:
         self.caudalmLxS = 0.0
         self.Sensor = Pin(15,Pin.IN)
         # 5880 / 60 = 98
-        self.factorCalibracion = 750
+        self.factorCalibracion = 700
         self.volumenTotal = 0.0
         self.consumoMaxActual = 0.0
     #Conteo de Pulsos
