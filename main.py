@@ -1,7 +1,7 @@
 from _thread import start_new_thread
 from machine import enable_irq, disable_irq
 from utime import sleep, ticks_ms, ticks_diff
-import red
+import Wifi
 import servicios
 import pantalla
 from Caudalimetro import Caudalimetro
@@ -24,7 +24,7 @@ variables.msgAdvertenciaEnviada = False
 variables.msgLimiteEnviado = False
 variables.msgCierreEnviado = False
 #Conectar a la red
-red.conectarwifi()
+Wifi.conectarwifi()
 #Ejecuta los servicios de IoT
 def actualizaServIOT():
     while True:

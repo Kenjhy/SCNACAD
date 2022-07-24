@@ -2,7 +2,7 @@
 import network   # importa el módulo network
 import ujson    # importa módulo para json
 def conectarwifi():
-    with open("configwifi.json") as configFile:
+    with open("configwifi.json") as configFile: #Apertura de fichero
         wifiConfig = ujson.load(configFile)
     sta_if = network.WLAN(network.STA_IF)     # instancia el objeto -sta_if- para realizar la conexión en modo STA
     if not sta_if.isconnected():              # si no existe conexión...
